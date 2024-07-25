@@ -2,6 +2,7 @@ import React from "react";
 
 class UserInfor extends React.Component {
     state = {
+        id: "",
         name: "",
         address: "",
         age: ""
@@ -16,11 +17,13 @@ class UserInfor extends React.Component {
     handleOnSubmit = (event) => {
         event.preventDefault();
         this.props.onAddUser({
+            id: this.state.id,
             name: this.state.name,
             address: this.state.address,
             age: this.state.age
         });
         this.setState({
+            id: "",
             name: "",
             address: "",
             age: ""
@@ -31,6 +34,13 @@ class UserInfor extends React.Component {
         return (
             <div>
                 <form onSubmit={this.handleOnSubmit}>
+                    <input
+                        type="text"
+                        name="id"
+                        placeholder="Id"
+                        value={this.state.id}
+                        onChange={this.handleOnChange}
+                    />
                     <input
                         type="text"
                         name="name"

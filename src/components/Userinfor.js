@@ -1,42 +1,62 @@
 import React from "react";
+
 class UserInfor extends React.Component {
     state = {
-        name: "Trang",
-        address: "Thanh Hoa",
-        age: 21
-    };
-
-    handleclick = (event) => {
-        console.log(">> click me my button");
-        console.log("My name is ", this.state.name)
-        this.setState({
-            name: "Eric"
-        })
-    };
-    handleOnMouse = (event) => {
-        console.log("My name is Mouse");
-        console.log(this.state)
+        name: "",
+        address: "",
+        age: ""
     };
 
     handleOnChange = (event) => {
         this.setState({
-            name: event.target.value
+            [event.target.name]: event.target.value
         });
-    }
+    };
+
     handleOnSubmit = (event) => {
         event.preventDefault();
+        this.props.onAddUser({
+            name: this.state.name,
+            address: this.state.address,
+            age: this.state.age
+        });
+        this.setState({
+            name: "",
+            address: "",
+            age: ""
+        });
+    };
 
-    }
     render() {
         return (
             <div>
-                my name  is {this.state.name}
                 <form onSubmit={this.handleOnSubmit}>
-                    <input type="text" onChange={this.handleOnChange}></input>
-                    <button >Submit</button>
+                    <input
+                        type="text"
+                        name="name"
+                        placeholder="Name"
+                        value={this.state.name}
+                        onChange={this.handleOnChange}
+                    />
+                    <input
+                        type="text"
+                        name="address"
+                        placeholder="Address"
+                        value={this.state.address}
+                        onChange={this.handleOnChange}
+                    />
+                    <input
+                        type="text"
+                        name="age"
+                        placeholder="Age"
+                        value={this.state.age}
+                        onChange={this.handleOnChange}
+                    />
+                    <button type="submit">Add User</button>
                 </form>
             </div>
-        )
+        );
     }
 }
-export default UserInfor
+
+export default UserInfor;

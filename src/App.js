@@ -3,13 +3,14 @@ import './App.css';
 import { useDispatch, useSelector } from 'react-redux';
 import { increaseCounter, decreaseCounter } from './redux/action/counterAction';
 import MyComponents from './components/MyComponents';
+import Header from './components/Header/Header';
 import React  from 'react';
 const App = () => {
   
   return (
    
     <div className="app-container">
-    hello world
+      <Header></Header>
     
     </div>
   );

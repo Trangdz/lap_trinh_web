@@ -1,28 +1,25 @@
-import React from "react";
+import React, { useState } from "react";
 
-class UserInfor extends React.Component {
-    state = {
+const UserInfor = ({ onAddUser }) => {
+    const [user, setUser] = useState({
         id: "",
         name: "",
         address: "",
         age: ""
-    };
+    });
 
-    handleOnChange = (event) => {
-        this.setState({
-            [event.target.name]: event.target.value
+    const handleOnChange = (event) => {
+        const { name, value } = event.target;
+        setUser({
+            ...user,
+            [name]: value
         });
     };
 
-    handleOnSubmit = (event) => {
+    const handleOnSubmit = (event) => {
         event.preventDefault();
-        this.props.onAddUser({
-            id: this.state.id,
-            name: this.state.name,
-            address: this.state.address,
-            age: this.state.age
-        });
-        this.setState({
+        onAddUser(user);
+        setUser({
             id: "",
             name: "",
             address: "",
@@ -30,43 +27,41 @@ class UserInfor extends React.Component {
         });
     };
 
-    render() {
-        return (
-            <div>
-                <form onSubmit={this.handleOnSubmit}>
-                    <input
-                        type="text"
-                        name="id"
-                        placeholder="Id"
-                        value={this.state.id}
-                        onChange={this.handleOnChange}
-                    />
-                    <input
-                        type="text"
-                        name="name"
-                        placeholder="Name"
-                        value={this.state.name}
-                        onChange={this.handleOnChange}
-                    />
-                    <input
-                        type="text"
-                        name="address"
-                        placeholder="Address"
-                        value={this.state.address}
-                        onChange={this.handleOnChange}
-                    />
-                    <input
-                        type="text"
-                        name="age"
-                        placeholder="Age"
-                        value={this.state.age}
-                        onChange={this.handleOnChange}
-                    />
-                    <button type="submit">Add User</button>
-                </form>
-            </div>
-        );
-    }
-}
+    return (
+        <div>
+            <form onSubmit={handleOnSubmit}>
+                <input
+                    type="text"
+                    name="id"
+                    placeholder="Id"
+                    value={user.id}
+                    onChange={handleOnChange}
+                />
+                <input
+                    type="text"
+                    name="name"
+                    placeholder="Name"
+                    value={user.name}
+                    onChange={handleOnChange}
+                />
+                <input
+                    type="text"
+                    name="address"
+                    placeholder="Address"
+                    value={user.address}
+                    onChange={handleOnChange}
+                />
+                <input
+                    type="text"
+                    name="age"
+                    placeholder="Age"
+                    value={user.age}
+                    onChange={handleOnChange}
+                />
+                <button type="submit">Add User</button>
+            </form>
+        </div>
+    );
+};
 
 export default UserInfor;

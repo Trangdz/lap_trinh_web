@@ -8,9 +8,9 @@ const App = () => {
   
   return (
    
-    <div className="App">
+    <div className="app-container">
     hello world
-    <button className='btn btn-primary'>Test</button>
+    
     </div>
   );
 }

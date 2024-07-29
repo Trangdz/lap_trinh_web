@@ -1,6 +1,6 @@
 const Admin =(props)=>{
     return(
-        <div>user components</div>
+        <div>Admin components</div>
     )
 }
 export default Admin;

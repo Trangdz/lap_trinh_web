@@ -1,0 +1,15 @@
+.admin-container{
+    display: flex;
+   
+
+}
+.pro-sidebar {
+    color: #adadad;
+    height: 100vh;
+    width: 270px;
+    min-width: 270px;
+    text-align: left;
+    transition: width, left, right, 0.3s;
+    position: relative;
+    z-index: 1009;
+}

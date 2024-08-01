@@ -1,15 +1,13 @@
 import 'react-pro-sidebar/dist/css/styles.css';
 import { ProSidebar, Menu, MenuItem, SubMenu, SidebarHeader, SidebarFooter, SidebarContent } from 'react-pro-sidebar';
 import { FaTachometerAlt, FaGem, FaList, FaGithub, FaRegLaughWink, FaHeart } from 'react-icons/fa';
-
 import sidebarBg from '../../assets/bg2.jpg';
-const SideBar = ({ image, collapsed, toggled, handleToggleSidebar }) => {
 
+const SideBar = ({ image, collapsed, toggled, handleToggleSidebar }) => {
     return (
         <>
             <ProSidebar
-                image={ sidebarBg }
-              
+                image={sidebarBg}
                 collapsed={collapsed}
                 toggled={toggled}
                 breakPoint="md"
@@ -28,7 +26,7 @@ const SideBar = ({ image, collapsed, toggled, handleToggleSidebar }) => {
                             whiteSpace: 'nowrap',
                         }}
                     >
-                        Academy technology of cryptography 
+                        Học viện CNTT ACT
                     </div>
                 </SidebarHeader>
 
@@ -38,9 +36,9 @@ const SideBar = ({ image, collapsed, toggled, handleToggleSidebar }) => {
                             icon={<FaTachometerAlt />}
                             suffix={<span className="badge red">New</span>}
                         >
-                           Dashboard
+                            Dashboard
                         </MenuItem>
-                        <MenuItem icon={<FaGem />}> components</MenuItem>
+                        <MenuItem icon={<FaGem />}> Components</MenuItem>
                     </Menu>
                     <Menu iconShape="circle">
                         <SubMenu
@@ -54,23 +52,23 @@ const SideBar = ({ image, collapsed, toggled, handleToggleSidebar }) => {
                         </SubMenu>
                         <SubMenu
                             prefix={<span className="badge gray">3</span>}
-                            title='withPrefix' 
+                            title='withPrefix'
                             icon={<FaHeart />}
                         >
                             <MenuItem>SubMenu 1</MenuItem>
                             <MenuItem>SubMenu 2</MenuItem>
                             <MenuItem>SubMenu 3</MenuItem>
                         </SubMenu>
-                        <SubMenu title= 'multiLevel' icon={<FaList />}>
-                        <MenuItem>SubMenu 1</MenuItem>
-                        <MenuItem>SubMenu 2</MenuItem>
-                            <SubMenu title='submenu' >
-                                <MenuItem>submenu  </MenuItem>
-                                <MenuItem> submenu</MenuItem>
-                                <SubMenu title= 'submenu '>
-                                    <MenuItem> submenu </MenuItem>
-                                    <MenuItem>submenu </MenuItem>
-                                    <MenuItem>submenu </MenuItem>
+                        <SubMenu title='multiLevel' icon={<FaList />}>
+                            <MenuItem>SubMenu 1</MenuItem>
+                            <MenuItem>SubMenu 2</MenuItem>
+                            <SubMenu title='submenu'>
+                                <MenuItem>submenu</MenuItem>
+                                <MenuItem>submenu</MenuItem>
+                                <SubMenu title='submenu'>
+                                    <MenuItem>submenu</MenuItem>
+                                    <MenuItem>submenu</MenuItem>
+                                    <MenuItem>submenu</MenuItem>
                                 </SubMenu>
                             </SubMenu>
                         </SubMenu>
@@ -91,17 +89,17 @@ const SideBar = ({ image, collapsed, toggled, handleToggleSidebar }) => {
                             rel="noopener noreferrer"
                         >
                             <FaGithub />
-                            <span style={{ whiteSpace: 'nowrap', textOverflow: 'ellipsis', overflow: 'hidden' }}>
-                                viewSource
-                            </span>
+                            {!collapsed && (
+                                <span style={{ whiteSpace: 'nowrap', textOverflow: 'ellipsis', overflow: 'hidden' }}>
+                                    <button className='btn-view'>view Source</button>
+                                </span>
+                            )}
                         </a>
                     </div>
                 </SidebarFooter>
             </ProSidebar>
-
         </>
-
     );
-}
+};
 
 export default SideBar;

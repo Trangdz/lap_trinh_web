@@ -1,0 +1,10 @@
+.table{
+    width: 75vw;
+    .btn{
+        margin: 10px;
+        height: 45px;
+        width: 80px;
+        padding: 10px;
+        margin-left: 55px;
+    }
+}

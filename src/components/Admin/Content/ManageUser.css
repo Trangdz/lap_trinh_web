@@ -1,5 +1,11 @@
 .manage-user-container {
-    .user-content {}
+    /* width: 1320px;
+    padding: 20px;
+    box-sizing: border-box;
+
+    .user-content {
+        width: 30vw;
+    } */
 }
 
 .modal-add-user {
@@ -24,10 +30,12 @@
         border-radius: 4px;
         padding: 5px;
         background-color: cornsilk;
-        &:hover{
+
+        &:hover {
             background-color: black;
             color: white;
-            &:active{
+
+            &:active {
                 background-color: #303030;
             }
         }

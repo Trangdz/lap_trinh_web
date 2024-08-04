@@ -1,4 +1,4 @@
-
+import TableUser from "./TableUser";
 import ModalCreateUser from "./ModalCreateUser";
 import './ManageUser.css'
 import { FaPlusCircle } from "react-icons/fa";
@@ -19,8 +19,7 @@ const ManageUser = (props) => {
                 </div>
 
                 <div>
-                    table users
-                    
+                    <TableUser/>
                 </div>
                 <ModalCreateUser show={show} setShow={setShow}/>
 

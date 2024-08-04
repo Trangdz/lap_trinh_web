@@ -67,6 +67,7 @@ const ModalCreateUser = (props) => {
         }
         if(res && res.EC!==0)
         {
+            console.log("Error after process: ",res);
             toast.error(res.EM);
 
         }

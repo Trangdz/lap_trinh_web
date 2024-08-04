@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState,useEffect } from 'react';
 import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
 import { FaPlusCircle } from "react-icons/fa";
@@ -64,6 +64,7 @@ const ModalCreateUser = (props) => {
         {
             toast.success(res.EM);
             handleClose();
+            await props.fetchListUser();
         }
         if(res && res.EC!==0)
         {

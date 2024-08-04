@@ -2,10 +2,21 @@ import TableUser from "./TableUser";
 import ModalCreateUser from "./ModalCreateUser";
 import './ManageUser.css'
 import { FaPlusCircle } from "react-icons/fa";
-import { useState } from "react";
+import { useEffect, useState } from 'react';
+import { getAllUser } from '../../../services/apiService'
 const ManageUser = (props) => {
     const [show,setShow]=useState(false);
-    
+    const [listUser, setListUser] = useState([]);
+    useEffect(() => {
+        fetchListUser();
+    }, [])
+
+    const fetchListUser = async () => {
+        let res = await getAllUser();
+        if (res.EC === 0) {
+            setListUser(res.DT);
+        }
+    }
     return (
         <div className="manage-user-container">
 
@@ -19,9 +30,9 @@ const ManageUser = (props) => {
                 </div>
 
                 <div>
-                    <TableUser/>
+                    <TableUser listUser={listUser}/>
                 </div>
-                <ModalCreateUser show={show} setShow={setShow}/>
+                <ModalCreateUser show={show} setShow={setShow} setListUser={setListUser} fetchListUser={fetchListUser}/>
 
             </div>
 

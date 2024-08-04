@@ -20,15 +20,15 @@ const TableUser = (props) => {
                         listUser.map((item, index) => {
                             return (
 
-                                <tr>
-                                    <td scope="col">{index + 1}</td>
+                                <tr key={`table-user-${index}`}>
+                                    <td scope="col">{item.id}</td>
                                     <td scope="col">{item.username}</td>      
                                     <td scope="col">{item.email}</td>
                                     <td scope="col">{item.role}</td>
                                     <td scope="col">
                                         <button className='btn btn-primary'>View</button>
-                                        <button className='btn btn-warning'>Update</button>
-                                        <button className='btn btn-danger'>Delete</button>
+                                        <button className='btn btn-warning' onClick={()=>props.handleUpdate(item)}>Update</button>
+                                        <button className='btn btn-danger' onClick={()=>props.handleDelete(item)}>Delete</button>
                                     </td>
                                 </tr>
 

@@ -84,6 +84,7 @@ const TableUserPaginate = (props) => {
         breakLinkClassName="page-link"
         containerClassName="pagination"
         activeClassName="active"
+        forcePage={props.page-1}
         renderOnZeroPageCount={null}
       />
         </>

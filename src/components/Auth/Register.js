@@ -1,7 +1,8 @@
 import { useState } from "react";
 import './Register.css';
 import { useNavigate } from "react-router-dom";
-import { toast } from "bootstrap";
+import {toast} from 'react-toastify';
+import { postCreateNewUser } from "../../services/apiService";
 const Register = (props) => {
     const [email, setEmail] = useState("");
     const [username, setUsername] = useState("");
@@ -14,12 +15,26 @@ const Register = (props) => {
             /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|.(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
           ));
       };
-    const handleSignIn=()=>{
+    const handleSignIn= async()=>{
         const checkMail=validateEmail(email);
         if(!checkMail)
         {
-
+            toast.error("Invaild email");
+            return;
         }
+        const res = await postCreateNewUser(email,password,username,"USER","");
+        if(res && res.EC===0)
+            {
+                toast.success(res.EM);
+                navigate('/');
+               
+            }
+            if(res && res.EC!==0)
+            {
+                console.log("Error after process: ",res);
+                toast.error(res.EM);
+            }
+        
     }
     const handleLogin = () => {
         navigate('/login');

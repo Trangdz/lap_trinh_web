@@ -92,7 +92,7 @@ const ModalUpdateUser = (props) => {
         if (res && res.EC === 0) {
             toast.success(res.EM);
             handleClose();
-            await props.fetchListUser();
+            await props.fetchListUserWithPaginate(props.page);
         }
         if (res && res.EC !== 0) {
             console.log("Error after process: ", res);

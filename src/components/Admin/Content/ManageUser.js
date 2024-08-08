@@ -3,24 +3,41 @@ import ModalCreateUser from "./ModalCreateUser";
 import './ManageUser.css'
 import { FaPlusCircle } from "react-icons/fa";
 import { useEffect, useState } from 'react';
-import { getAllUser } from '../../../services/apiService'
+import { getAllUser ,getUserPaginate} from '../../../services/apiService'
 import ModalUpdateUser from './ModalUpdateUser';
 import ModalDeleteUser from "./ModalDeleteUser";
+import TableUserPaginate from "./TableUserPaginate";
 const ManageUser = (props) => {
+    const LIMIT_USER=6;
     const [show,setShow]=useState(false);
+    const [page,setPage]=useState(1);
+    const [totalPage,setToTalPage]=useState(0);
     const [listUser, setListUser] = useState([]);
     const [showUpdate,setShowUpdate]=useState(false);
     const [dataUpdate,setDataUpdate]=useState({});
     const [dataDelete,setDataDelete]=useState({});
     const [showDelete,setShowDelete]=useState(false);
     useEffect(() => {
-        fetchListUser();
+        // fetchListUser();
+        const page=1;
+        fetchListUserWithPaginate(page);
     }, [])
 
     const fetchListUser = async () => {
         let res = await getAllUser();
         if (res.EC === 0) {
             setListUser(res.DT);
+           
+        }
+    }
+    const fetchListUserWithPaginate = async (page) => {
+        
+        let res = await getUserPaginate(page,LIMIT_USER);
+        
+        if (res.EC === 0) {
+            setListUser(res.DT.users);
+            setToTalPage(res.DT.totalPages);
+            
         }
     }
     const handleUpdate = (user)=>{
@@ -49,11 +66,12 @@ const ManageUser = (props) => {
                 </div>
 
                 <div>
-                    <TableUser listUser={listUser} handleUpdate={handleUpdate}  handleDelete={handleDelete}/>
+                    {/* <TableUser listUser={listUser} handleUpdate={handleUpdate}  handleDelete={handleDelete}/> */}
+                    <TableUserPaginate listUser={listUser} handleUpdate={handleUpdate}  handleDelete={handleDelete}  fetchListUserWithPaginate={fetchListUserWithPaginate} totalPage={totalPage} page={page} setPage={setPage}/>
                 </div>
-                <ModalCreateUser show={show} setShow={setShow} setListUser={setListUser} fetchListUser={fetchListUser}/>
-                <ModalUpdateUser show={showUpdate}  setShow={setShowUpdate} resetUser={resetUser} dataUpdate={dataUpdate} fetchListUser={fetchListUser}/>
-                <ModalDeleteUser show={showDelete} setShow={setShowDelete}  dataDelete={dataDelete} fetchListUser={fetchListUser}/>
+                <ModalCreateUser show={show} setShow={setShow} setListUser={setListUser} fetchListUserWithPaginate={fetchListUserWithPaginate} page={page}/>
+                <ModalUpdateUser show={showUpdate}  setShow={setShowUpdate} resetUser={resetUser} dataUpdate={dataUpdate} fetchListUserWithPaginate={fetchListUserWithPaginate} page={page}/>
+                <ModalDeleteUser show={showDelete} setShow={setShowDelete}  dataDelete={dataDelete} fetchListUserWithPaginate={fetchListUserWithPaginate} page={page}/>
             </div>
 
         </div>

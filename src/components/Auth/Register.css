@@ -1,4 +1,4 @@
-.login-page {
+.register-page {
     background-color: #f0f2f5;
     display: flex;
     justify-content: center;
@@ -7,7 +7,7 @@
     margin: 0;
 }
 
-.login-page .login-container {
+.register-container {
     background-color: #fff;
     border-radius: 8px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
@@ -17,20 +17,20 @@
     text-align: center;
 }
 
-.login-page .login-header {
+.register-header {
     display: flex;
     justify-content: flex-end;
     align-items: center;
     margin-bottom: 20px;
 }
 
-.login-page .login-header span {
+.register-header span {
     font-size: 14px;
     color: #333;
     margin-right: 10px;
 }
 
-.login-page .login-header button {
+.register-header button {
     padding: 8px 16px;
     background-color: #007bff;
     color: white;
@@ -40,40 +40,40 @@
     font-size: 14px;
 }
 
-.login-page .login-header button:hover {
+.register-header button:hover {
     background-color: #0056b3;
 }
 
-.login-page .login-title {
+.register-title {
     font-size: 24px;
     color: #333;
     margin-bottom: 10px;
 }
 
-.login-page .login-subtitle {
+.register-subtitle {
     font-size: 18px;
     color: #666;
     margin-bottom: 20px;
 }
 
-.login-page .login-content {
+.register-content {
     display: flex;
     flex-direction: column;
     gap: 20px;
     text-align: left;
 }
 
-.login-page .form-group {
+.form-group {
     margin-bottom: 20px;
 }
 
-.login-page .form-group label {
+.form-group label {
     margin-bottom: 5px;
     color: #555;
     display: block;
 }
 
-.login-page .form-group input {
+.form-group input {
     width: 100%;
     padding: 10px;
     border: 1px solid #ccc;
@@ -81,18 +81,18 @@
     font-size: 16px;
 }
 
-.login-page .form-group input:focus {
+.form-group input:focus {
     border-color: #007bff;
     outline: none;
 }
 
-.login-page .btn-login {
+.btn-register {
     display: flex;
     justify-content: center;
     margin-top: 20px;
 }
 
-.login-page .btn-login button {
+.btn-register button {
     width: 100%;
     padding: 10px;
     background-color: #000;
@@ -103,21 +103,21 @@
     font-size: 16px;
 }
 
-.login-page .btn-login button:hover {
+.btn-register button:hover {
     background-color: #333;
 }
 
-.login-page .text-content {
+.text-content {
     margin-top: 20px;
     text-align: center;
 }
 
-.login-page .text-content span {
+.text-content span {
     color: #007bff;
     cursor: pointer;
     text-decoration: underline;
 }
 
-.login-page .text-content span:hover {
+.text-content span:hover {
     color: #0056b3;
 }

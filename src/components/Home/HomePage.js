@@ -1,5 +1,9 @@
 import videohomepage from "../../assets/video-homepage.mp4"
+import { useSelector } from "react-redux";
+
 const HomePage = (props) => {
+  const isAuthenticated=useSelector(state=> state.user.isAuthenticated);
+  const account=useSelector(state=> state.user.account);
   return (
     <>
       <div className="homePage-container">

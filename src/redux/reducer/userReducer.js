@@ -1,5 +1,6 @@
 
 import { Accordion } from 'react-bootstrap';
+import { FETCH_USER_LOGIN_SUCCESS } from '../action/useAction';
 import { INCREMENT, DECREMENT } from '../action/counterAction';
 const INITIAL_STATE = {
     account:{
@@ -13,7 +14,7 @@ const INITIAL_STATE = {
 };
 const userReducer = (state = INITIAL_STATE, action) => {
     switch (action.type) {
-        case 'FETCH_USER_LOGIN_SUCCESS':
+        case FETCH_USER_LOGIN_SUCCESS:
             return {
                 ...state, account:{
                     access_token:action.payload.DT.access_token,

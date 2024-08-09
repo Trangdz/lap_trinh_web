@@ -5,7 +5,9 @@ import { postLogin } from '../../services/apiService';
 import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { useDispatch } from 'react-redux';
-
+import { doLogin } from '../../redux/action/useAction';
+import { AiOutlineLoading3Quarters } from "react-icons/ai";
+import 'nprogress/nprogress.css';
 const Login = (props) => {
     const [password, setPassword] = useState("");
     const [email, setEmail] = useState("");
@@ -18,10 +20,7 @@ const Login = (props) => {
         let res = await postLogin(email, password);
         console.log("check res: ", res);
         if (res && res.EC === 0) {
-            dispatch({
-                type:'FETCH_USER_LOGIN_SUCCESS',
-                payload: res
-            })
+            dispatch(doLogin(res));
             toast.success(res.EM);
             navigate("/");
         }
@@ -66,7 +65,10 @@ const Login = (props) => {
                     </div>
                     <span>Forgot password</span>
                     <div className="btn-login">
-                        <button onClick={() => handleLogin()}>Login</button>
+                    
+                        <button onClick={() => handleLogin()}>
+                        <AiOutlineLoading3Quarters />
+                                             Login</button>
                     </div>
                     <div className="text-content">
                         <span className="back" onClick={() => { navigate('/') }}>Go to Home Page</span>

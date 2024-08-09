@@ -1,40 +1,40 @@
 import { useState } from "react";
 import './Register.css';
 import { useNavigate } from "react-router-dom";
-import {toast} from 'react-toastify';
+import { toast } from 'react-toastify';
 import { postCreateNewUser } from "../../services/apiService";
+import { FaEye, FaEyeSlash } from "react-icons/fa";
 const Register = (props) => {
     const [email, setEmail] = useState("");
     const [username, setUsername] = useState("");
     const [password, setPassword] = useState("");
+    const [showPassword, setShowPassword] = useState(false);
+    const [show, setShow] = useState("password");
     const navigate = useNavigate();
     const validateEmail = (email) => {
         return (String(email)
-          .toLowerCase()
-          .match(
-            /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|.(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
-          ));
-      };
-    const handleSignIn= async()=>{
-        const checkMail=validateEmail(email);
-        if(!checkMail)
-        {
+            .toLowerCase()
+            .match(
+                /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|.(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
+            ));
+    };
+    const handleSignIn = async () => {
+        const checkMail = validateEmail(email);
+        if (!checkMail) {
             toast.error("Invaild email");
             return;
         }
-        const res = await postCreateNewUser(email,password,username,"USER","");
-        if(res && res.EC===0)
-            {
-                toast.success(res.EM);
-                navigate('/');
-               
-            }
-            if(res && res.EC!==0)
-            {
-                console.log("Error after process: ",res);
-                toast.error(res.EM);
-            }
-        
+        const res = await postCreateNewUser(email, password, username, "USER", "");
+        if (res && res.EC === 0) {
+            toast.success(res.EM);
+            navigate('/');
+
+        }
+        if (res && res.EC !== 0) {
+            console.log("Error after process: ", res);
+            toast.error(res.EM);
+        }
+
     }
     const handleLogin = () => {
         navigate('/login');
@@ -60,13 +60,28 @@ const Register = (props) => {
                             type='email'
                             value={email}
                             onChange={(event) => setEmail(event.target.value)} />
+
                     </div>
                     <div className="form-group">
                         <label>Password (*)</label>
-                        <input
-                            type='password'
-                            value={password}
-                            onChange={(event) => setPassword(event.target.value)} />
+                        <div className="password-container">
+                            <input
+                                type={show}
+                                value={password}
+                                onChange={(event) => setPassword(event.target.value)} />
+                            {showPassword ?
+                                <FaEye className="password-toggle-icon" onClick={() => {
+                                    setShowPassword(false);
+                                    setShow("password");
+                                }} /> :
+                                <FaEyeSlash className="password-toggle-icon" onClick={() => {
+                                    setShowPassword(true);
+                                    setShow("text");
+                                }} />
+                            }
+                        </div>
+
+
                     </div>
                     <div className="form-group">
                         <label>Username</label>
@@ -76,7 +91,7 @@ const Register = (props) => {
                             onChange={(event) => setUsername(event.target.value)} />
                     </div>
                     <div className="btn-register">
-                        <button onClick={()=>handleSignIn()}>Create my free account</button>
+                        <button onClick={() => handleSignIn()}>Create my free account</button>
                     </div>
                     <div className="text-content">
                         <span className="back" onClick={() => { navigate('/') }}>Go to Homepage</span>

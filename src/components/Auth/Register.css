@@ -121,3 +121,27 @@
 .text-content span:hover {
     color: #0056b3;
 }
+.form-group {
+    position: relative;
+    margin-bottom: 15px; /* Điều chỉnh khoảng cách dưới của phần tử */
+}
+
+.password-container {
+    position: relative;
+}
+
+.password-container input[type="password"],
+.password-container input[type="text"] {
+    width: 100%; /* Chiều rộng 100% */
+    padding-right: 30px; /* Thêm padding phải để ngăn chặn văn bản bị chồng lên biểu tượng */
+    box-sizing: border-box; /* Đảm bảo padding không ảnh hưởng đến chiều rộng */
+}
+
+.password-toggle-icon {
+    position: absolute;
+    right: 10px;
+    top: 50%;
+    transform: translateY(-50%);
+    cursor: pointer;
+    color: #888; /* Thay đổi màu sắc nếu cần */
+}
